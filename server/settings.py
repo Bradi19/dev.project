@@ -21,7 +21,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'server.src.oauth',
     'server.src.loots',
-    'server.src.bettings'
+    'server.src.bettings',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -32,7 +33,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    'corsheaders.middleware.CorsMiddleware'
+ ]
 
 ROOT_URLCONF = 'server.urls'
 
@@ -85,7 +87,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+CORS_ORIGIN_ALLOW_ALL = False
 
+CORS_ORIGIN_WHITELIST =  [
+                        'http://localhost:3000',
+                        'http://localhost:8000',
+                        'http://localhost:8080',
+                        ]
 STATIC_URL = '/static/'
 MEDIA_URL = "/server/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"server/media")
